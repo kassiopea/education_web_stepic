@@ -1,4 +1,5 @@
 def app(environ, start_response):
+    bind="0.0.0.0:8080";
     status = '200 OK'
     headers = [
             ('Content-Type', 'text/plain')
