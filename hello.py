@@ -1,5 +1,3 @@
-python: /usr/bin/python3
-
 def app(environ, start_response):
     status = '200 OK'
     headers = [
