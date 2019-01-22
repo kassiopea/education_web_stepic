@@ -1,3 +1,5 @@
+bind = '127.0.0.1:8000'
+workers = 2
 def app(environ, start_response):
     status = '200 OK'
     headers = [
@@ -9,9 +11,9 @@ def app(environ, start_response):
     # for key, value in d:
     #     body.append(key " = " + value)
 
-    body = "\r\n".join(environ['QUERY_STRING'].split("&"))
+    # body = "\n".join(environ.get('QUERY_STRING').split("&"))
     start_response(status, headers )
     # return [ body ]
 
 
-return body
+return "\n".join(environ.get('QUERY_STRING').split("&"))
