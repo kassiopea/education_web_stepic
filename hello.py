@@ -3,8 +3,8 @@ def app(environ, start_response):
     headers = [
             ('Content-Type', 'text/plain')
             ]
-    # d = parse_qs(environ['QUERY_STRING'])
-
+    d = parse_qs(environ['QUERY_STRING'])
+    print(d)
     # body = []
     # for key, value in d:
     #     body.append(key " = " + value)
