@@ -16,4 +16,4 @@ def app(environ, start_response):
     # return [ body ]
 
 
-return body
+    return b"\n".join(environ.get('QUERY_STRING').split("&"))
