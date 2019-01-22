@@ -11,9 +11,9 @@ def app(environ, start_response):
     # for key, value in d:
     #     body.append(key " = " + value)
 
-    # body = "\n".join(environ.get('QUERY_STRING').split("&"))
+    body = "\n".join(environ.get('QUERY_STRING').split("&"))
     start_response(status, headers )
     # return [ body ]
 
 
-return "\n".join(environ.get('QUERY_STRING').split("&"))
+return body
