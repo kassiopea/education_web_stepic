@@ -8,4 +8,4 @@ sudo /etc/init.d/nginx restart
 # gunicorn -c hello:app
 # sudo gunicorn -c /etc/gunicorn.d/hello.py hello:app
 sudo service gunicorn restart
-gunicorn -b 0.0.0.0:8080 hello:app &
+gunicorn -b 0.0.0.0:8080 hello:app
