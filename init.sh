@@ -5,4 +5,4 @@ sudo /etc/init.d/nginx restart
 # GUNICORN_CMD_ARGS="--bind=127.0.0.1 --workers=3" gunicorn hello:app
 # gunicorn -b 0.0.0.0:8080 wsgi
 # gunicorn -c hello:app
-sudo gunicorn -c /etc/gunicorn.d/hello.py hello
+sudo gunicorn -c /etc/gunicorn.d/hello.py hello:app
