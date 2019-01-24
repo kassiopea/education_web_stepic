@@ -1,5 +1,5 @@
 # sudo apt-get install python3.5
-# sudo pip3 install --upgrade django
+sudo pip3 install --upgrade django
 
 sudo rm /etc/nginx/sites-enabled/default
 
