@@ -8,4 +8,5 @@ sudo ln -sf /home/box/web/etc/gunicorn-django.conf /etc/gunicorn.d/test-django.c
 
 sudo /etc/init.d/nginx restart
 # sudo python3 manage.py runserver 0:8000
-sudo gunicorn -c /etc/gunicorn.d/test-django.conf ask.wsgi:application
+# sudo gunicorn -c /etc/gunicorn.d/test-django.conf ask.wsgi:application
+gunicorn -c /etc/gunicorn.d/test-django.conf ask.wsgi:application
