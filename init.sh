@@ -1,6 +1,6 @@
 # sudo apt-get install python3.5
-sudo pip3 install --upgrade django
-
+# sudo pip3 install --upgrade django
+pip install Django==2.0.7
 sudo rm /etc/nginx/sites-enabled/default
 
 sudo ln -sf /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
