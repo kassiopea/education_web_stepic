@@ -1,3 +1,4 @@
+sudo apt-get install python3.6
 sudo pip3 install --upgrade django
 
 sudo rm /etc/nginx/sites-enabled/default
