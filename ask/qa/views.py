@@ -20,7 +20,7 @@ def pagInt(request):
     return page
 def newQuestions(request):
     page = pagInt(request)
-    
+
     questions = Question.objects.new()
     paginator = Paginator(questions, 10)
 
@@ -34,10 +34,10 @@ def newQuestions(request):
                    'user': request.user,
                    'session': request.session, })
 
-def popular(request):
-    try:
-        page = int(request.GET.get("page"))
-    except ValueError:
-        page = 1
-    except TypeError:
-        page = 1
+# def popular(request):
+#     try:
+#         page = int(request.GET.get("page"))
+#     except ValueError:
+#         page = 1
+#     except TypeError:
+#         page = 1
