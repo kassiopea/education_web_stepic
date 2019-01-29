@@ -35,8 +35,7 @@ def newQuestions(request):
                    'user': request.user,
                    'session': request.session, })
 
-def popular(request):
-    pass
+# def popular(request):
 #     try:
 #         page = int(request.GET.get("page"))
 #     except ValueError:
