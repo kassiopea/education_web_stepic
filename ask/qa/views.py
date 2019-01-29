@@ -22,7 +22,7 @@ def newquestions(request):
     try:
         page = paginator.page(page)
     except PageNotAnInteger:
-        page = = paginator.page(1)
+        page = paginator.page(1)
     except EmptyPage:
         page = paginator.page(paginator.num_pages)
 
