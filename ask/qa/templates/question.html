@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ question.question_title }}</title>
+    <title>{{ title }}</title>
 </head>
 <body>
-    <h1>{{ question.question_title }}</h1>
-    <p>{{question.text}}</p>
+    <h1>{{ title }}</h1>
+    <p>{{ text }}</p>
     {% for answer in answers %}
         <p>{{ answer }}, {{ answer.author }}</p>
     {% endfor %}
