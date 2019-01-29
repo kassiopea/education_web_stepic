@@ -31,7 +31,7 @@ def pagInt(request, questions, title):
 
 def newQuestions(request):
     questions = Question.objects.new()
-    page = pagInt(request, questions, 'Latest')
+    pagInt(request, questions, title='Latest')
     # paginator = Paginator(questions, 10)
 
     # page = paginator.page(page)
@@ -46,4 +46,4 @@ def newQuestions(request):
 
 def popular(request):
     questions = Question.objects.popular()
-    page = pagInt(request, questions, 'Popular')
+    pagInt(request, questions, title='Popular')
