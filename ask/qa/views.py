@@ -39,6 +39,7 @@ def popular(request):
 
 def guestionOwn(request):
     num = request.GET.get("id")
+    print(num)
     try:
         question = Question.objects.get(id=num)
     except Question.DoesNotExist:
