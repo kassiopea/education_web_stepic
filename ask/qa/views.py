@@ -5,7 +5,7 @@ from django.http import Http404
 # Create your views here.
 from django.http import HttpResponse
 
-from .models import Question
+from .models import Question, Answer
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
@@ -41,14 +41,15 @@ def guestionOwn(request, id):
     num = int(id)
     try:
         question = Question.objects.filter(id=num)
+
     except Question.DoesNotExist:
         raise Http404
     # allAnswers = Answer.objects.all()
-    Answers = Answer.objects.filter(question__id=num)
+    answers = Answer.objects.filter(question__id=num)
     # answers = Answer.objects.get(id=num).Question_id
     return render(request, 'question.html',
                   {'title': 'One question',
                    'guestion': question,
-                   'answers': Answers.object_list,
+                   'answers': answers.object_list,
                    'user': request.user,
                    'session': request.session, })
