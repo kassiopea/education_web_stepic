@@ -2,7 +2,7 @@
 
 # sudo apt-get install python3.5
 # sudo apt-get install gunicorn
-pip3 install Django==2.0.7
+sudo pip3 install Django==2.0.0
 # sudo pip3 install --upgrade django
 # pip install Django==2.0.7
 sudo rm /etc/nginx/sites-enabled/default
