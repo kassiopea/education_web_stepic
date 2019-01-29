@@ -56,7 +56,7 @@ ROOT_URLCONF = 'ask.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['qa/template'],
+        'DIRS': ['web/ask/qa/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
