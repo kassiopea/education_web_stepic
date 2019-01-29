@@ -20,7 +20,6 @@ def pagInt(request, questions, title):
     paginator = Paginator(questions, 10)
     page = paginator.page(page)
 
-    # return page
     return render(request, 'questions.html',
                   {'title': title,
                    'paginator': paginator,
@@ -32,18 +31,21 @@ def pagInt(request, questions, title):
 def newQuestions(request):
     questions = Question.objects.new()
     return pagInt(request, questions, title='Latest')
-    # paginator = Paginator(questions, 10)
 
-    # page = paginator.page(page)
-
-    # return render(request, 'questions.html',
-    #               {'title': 'Latest',
-    #                'paginator': paginator,
-    #                'questions': page.object_list,
-    #                'page': page,
-    #                'user': request.user,
-    #                'session': request.session, })
 
 def popular(request):
     questions = Question.objects.popular()
     return pagInt(request, questions, title='Popular')
+
+def guestionOwn(request, num):
+    try:
+        question = Question.objects.get(id=num)
+    except Question.DoesNotExist:
+        raise Http404
+    answers = Answer.objects.get(question.id = num)
+    return render(request, 'question.html',
+                  {'title': 'One question',
+                   'guestion': question,
+                   'answers': answers.object_list,
+                   'user': request.user,
+                   'session': request.session, })
