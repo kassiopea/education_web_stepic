@@ -5,12 +5,12 @@ from django.http import Http404
 # Create your views here.
 from django.http import HttpResponse
 
-from models import Question
+from .models import Question
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
 
-def newquestions(request):
+def newQuestions(request):
     questions = Question.objects.new()
 
     limit = request.GET.get('limit', 10)
