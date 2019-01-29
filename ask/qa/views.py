@@ -19,9 +19,11 @@ def pagInt(request):
         page = 1
     return page
 def newQuestions(request):
+    page = pagInt(request)
+    
     questions = Question.objects.new()
     paginator = Paginator(questions, 10)
-    page = pagInt(req)
+
     page = paginator.page(page)
 
     return render(request, 'new_questions.html',
