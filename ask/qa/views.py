@@ -14,17 +14,17 @@ def newquestions(request):
     questions = Question.objects.new()
 
     limit = request.GET.get('limit', 10)
-        try:
-            page = request.GET.get('page', 1)
-        except ValueError:
-            raise Http404
-            paginator = Paginator(questions, limit)
-        try:
-            page = paginator.page(page)
-        except PageNotAnInteger:
-            page = = paginator.page(1)
-        except EmptyPage:
-            page = paginator.page(paginator.num_pages)
+    try:
+        page = request.GET.get('page', 1)
+    except ValueError:
+        raise Http404
+        paginator = Paginator(questions, limit)
+    try:
+        page = paginator.page(page)
+    except PageNotAnInteger:
+        page = = paginator.page(1)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
 
     return render(request, 'new_questions.html', {
     'questions': page.object_list,
