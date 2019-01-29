@@ -26,4 +26,5 @@ urlpatterns = [
     path(r'ask/', test, name='ask'),
     path(r'popular/', test, name='popular'),
     path(r'new/', test, name='new'),
+    path(r'/?page=2', newQuestions, name='new_questions'),
 ]
