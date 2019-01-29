@@ -8,8 +8,8 @@
     <h1>{{ question }}</h1>
     <div>{{ question.text }}</div>
     <ul>
-    {% for answer in answers %}
-        <li>{{ answer }}</li>
+    {% for answer in question.answer_set.all %}
+        <li>{{ question.answer.text }}</li>
     {% endfor %}
     </ul>
 </body>
