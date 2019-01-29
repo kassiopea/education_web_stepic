@@ -11,25 +11,23 @@ def test(request, *args, **kwargs):
     return HttpResponse('OK')
 
 def newQuestions(request):
-    questions = Question.objects.new()
-
-    limit = request.GET.get('limit', 10)
     try:
-        page = request.GET.get('page', 1)
+        page = int(request.GET.get("page"))
     except ValueError:
-        raise Http404
-        paginator = Paginator(questions, limit)
-    try:
-        page = paginator.page(page)
-    except PageNotAnInteger:
-        page = paginator.page(1)
-    except EmptyPage:
-        page = paginator.page(paginator.num_pages)
+        page = 1
+    except TypeError:
+        page = 1
+    questions = Question.objects.new()
+    paginator = Paginator(questions, 10)
+    page = paginator.page(page)
 
-    return render(request, 'new_questions.html', {
-    'questions': page.object_list,
-    'paginator': paginator, 'page': page,
-    })
+    return render(request, 'new_questions.html',
+                  {'title': 'Latest',
+                   'paginator': paginator,
+                   'questions': page.object_list,
+                   'page': page,
+                   'user': request.user,
+                   'session': request.session, })
 
 # def paginate(request, qs):
 #     try:

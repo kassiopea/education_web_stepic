@@ -19,12 +19,12 @@ from qa.views import test, newQuestions
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
-    path(r'', test, name='main'),
+    path(r'', newQuestions, name='main'),
     path(r'login/', test, name='login'),
     path(r'signup/', test, name='signup'),
     path(r'question/<int:id>/', test, name='question'),
     path(r'ask/', test, name='ask'),
     path(r'popular/', test, name='popular'),
     path(r'new/', test, name='new'),
-    path(r'?page=', newQuestions, name='new_questions'),
+    # path(r'?page=', newQuestions, name='new_questions'),
 ]
