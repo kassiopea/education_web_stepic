@@ -44,11 +44,9 @@ def guestionOwn(request, id):
 
     except Question.DoesNotExist:
         raise Http404
-    # allAnswers = Answer.objects.all()
-    answers = Answer.objects.filter(question__id=num)
-    # answers = Answer.objects.get(id=num).Question_id
+    # answers = Answer.objects.filter(question__id=num)
     return render(request, 'question.html',
                   {'question': question,
-                   'answers': answers,
+                   # 'answers': answers,
                    'user': request.user,
                    'session': request.session, })
