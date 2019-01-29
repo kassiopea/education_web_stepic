@@ -8,7 +8,7 @@
     <h1>{{ question.title }}</h1>
     <p>{{question.text}}</p>
     {% for answer in answers %}
-        <p>{{ answer }}, {{ answer.author_id }}</p>
+        <p>{{ answer }}, {{ answer.author }}</p>
     {% endfor %}
     <div>User: {{ user }}</div>
     <div>Session: {{ session }}</div>

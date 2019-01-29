@@ -39,13 +39,13 @@ def popular(request):
 
 def guestionOwn(request):
     num = int(request.GET.get("id"))
-    print(num)
+    questions = Question.objects.all()
     try:
-        question = Question.objects.filter(id=num)
+        question = questions.objects.filter(id=num)
     except Question.DoesNotExist:
         raise Http404
-    # allAnswers = Answer.objects.all()
-    answers = Answer.objects.get(question=num)
+    allAnswers = Answer.objects.all()
+    answers = allAnswers.objects.filter(question__id=num)
     # answers = Answer.objects.get(id=num).Question_id
     return render(request, 'question.html',
                   {'title': 'One question',
