@@ -18,6 +18,7 @@ def pagInt(request):
     except TypeError:
         page = 1
     return page
+
 def newQuestions(request):
     page = pagInt(request)
 
@@ -34,7 +35,8 @@ def newQuestions(request):
                    'user': request.user,
                    'session': request.session, })
 
-# def popular(request):
+def popular(request):
+    pass
 #     try:
 #         page = int(request.GET.get("page"))
 #     except ValueError:
