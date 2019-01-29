@@ -38,14 +38,13 @@ def popular(request):
     return pagInt(request, questions, title='Popular')
 
 def guestionOwn(request):
-    num = request.GET.get("id")
-    print(num)
+    num = int(request.GET.get("id"))
     try:
         question = Question.objects.get(id=num)
     except Question.DoesNotExist:
         raise Http404
     # allAnswers = Answer.objects.all()
-    answers = Answer.objects.get(question_id=num)
+    answers = Answer.objects.get(question__id=num)
     # answers = Answer.objects.get(id=num).Question_id
     return render(request, 'question.html',
                   {'title': 'One question',
