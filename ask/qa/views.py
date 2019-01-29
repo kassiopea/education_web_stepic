@@ -48,8 +48,7 @@ def guestionOwn(request, id):
     answers = Answer.objects.filter(question__id=num)
     # answers = Answer.objects.get(id=num).Question_id
     return render(request, 'question.html',
-                  {'title': 'One question',
-                   'guestion': question,
+                  {'question': question,
                    'answers': answers,
                    'user': request.user,
                    'session': request.session, })
