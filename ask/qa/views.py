@@ -37,7 +37,8 @@ def popular(request):
     questions = Question.objects.popular()
     return pagInt(request, questions, title='Popular')
 
-def guestionOwn(request, num):
+def guestionOwn(request):
+    num = request.GET.get("id")
     try:
         question = Question.objects.get(id=num)
     except Question.DoesNotExist:
