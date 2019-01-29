@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ question }}</title>
+    <title>{{ question.title }}</title>
 </head>
 <body>
-    <h1>{{ question }}</h1>
+    <h1>{{ question.title }}</h1>
     <div>{{ question.text }}</div>
     <ul>
     {% for answer in question.answers_set.all %}
