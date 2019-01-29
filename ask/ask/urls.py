@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from qa.views import test
+from qa.views import test, newquestions
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
