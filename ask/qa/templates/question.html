@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>{{ question }}</title>
 </head>
 <body>
-    <h1>{{ title }}</h1>
-    <p>{{ text }}</p>
+    <h1>{{ question }}</h1>
+    <div>{{ question.text }}</div>
+    <ul>
     {% for answer in answers %}
-        <p>{{ answer }}, {{ answer.author }}</p>
+        <li>{{ answer }}</li>
     {% endfor %}
-    <div>User: {{ user }}</div>
-    <div>Session: {{ session }}</div>
+    </ul>
 </body>
 </html>

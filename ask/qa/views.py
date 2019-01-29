@@ -50,9 +50,7 @@ def guestionOwn(request, id):
     title = question.title
     text = question.text
     return render(request, 'question.html',
-                  {'title': title,
-                   'text': text,
-                   # 'question': question,
+                  {'question': question,
                    'answers': answers.object_list,
                    'user': request.user,
                    'session': request.session, })
