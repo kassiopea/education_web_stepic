@@ -38,15 +38,16 @@ def popular(request):
 
 def guestionOwn(request, id):
     num = int(id)
-    form
     try:
         question = Question.objects.filter(id=num)
 
     except Question.DoesNotExist:
         raise Http404
 
+    form = AnswerForm(request.POST)
+    
     if request.method == "POST":
-        form = AnswerForm(request.POST)
+
         if form.is_valid():
             _ = form.save()
             url = question.get_url()
