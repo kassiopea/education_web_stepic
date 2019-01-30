@@ -16,7 +16,7 @@ class AskForm(forms.Form):
         question.save()
         return question
 
-class AnswerForm():
+class AnswerForm(forms.Form):
     text = forms.CharField()
     question = forms.IntegerField(widget=forms.HiddenInput)
 
