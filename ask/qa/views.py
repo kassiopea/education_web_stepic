@@ -76,5 +76,5 @@ def ask(request):
             form = AskForm()
 
         return render(request, 'ask.html', {'form': form,
-                                        'user': request.user,
-                                        'session': request.session, })
+                                            'user': request.user,
+                                            'session': request.session, })
