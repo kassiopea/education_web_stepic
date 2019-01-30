@@ -43,11 +43,12 @@ def guestionOwn(request, id):
 
     except Question.DoesNotExist:
         raise Http404
-    form = AnswerForm(request.POST)
+
     if request.method == "POST":
+        form = AnswerForm(request.POST)
         if form.is_valid():
             _ = form.save()
-            url = q.get_url()
+            url = question.get_url()
             return HttpResponseRedirect(url)
         else:
             form = AnswerForm(initial={'question': num})
