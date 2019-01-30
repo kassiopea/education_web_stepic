@@ -49,7 +49,7 @@ def guestionOwn(request, id):
         form = AnswerForm(request.POST)
         if form.is_valid():
             form._user = request.user
-            form = form.save()
+            _. = form.save()
             url = question.get_url()
             return HttpResponseRedirect(url)
         else:
