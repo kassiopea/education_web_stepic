@@ -3,7 +3,7 @@
     <div>{{ question.text }}</div>
     <hr>
     <ul>
-    {% for answer in question.answer_set.all %}
+    {% for answer in answers %}
         <li>{{ answer }}</li>
     {% endfor %}
     </ul>

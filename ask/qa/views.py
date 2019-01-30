@@ -43,7 +43,7 @@ def guestionOwn(request, id):
 
     except Question.DoesNotExist:
         raise Http404
-    answers = Answer.objects.filter(question__id=num)
+
 
     if request.method == "POST":
         form = AnswerForm(request.POST)
@@ -55,8 +55,10 @@ def guestionOwn(request, id):
         else:
             form = AnswerForm(initial={'question': question.id})
 
+    answers = Answer.objects.filter(question__id=num)
     return render(request, 'question.html',
                   {'question': question,
+                   'answers': answers,
                    'form': form,
                    'user': request.user,
                    'session': request.session, })
