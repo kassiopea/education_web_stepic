@@ -50,7 +50,7 @@ def guestionOwn(request, id):
             url = q.get_url()
             return HttpResponseRedirect(url)
         else:
-            form = AnswerForm(initial={'question': question.id})
+            form = AnswerForm(initial={'question': num})
 
     answers = Answer.objects.filter(question__id=num)
     return render(request, 'question.html',
