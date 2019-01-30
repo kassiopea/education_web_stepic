@@ -38,6 +38,7 @@ def popular(request):
 
 def guestionOwn(request, id):
     num = int(id)
+    form
     try:
         question = Question.objects.filter(id=num)
 
