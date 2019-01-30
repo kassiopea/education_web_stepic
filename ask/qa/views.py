@@ -74,7 +74,7 @@ def ask(request):
 
         else:
             form = AskForm()
-
-        return render(request, 'ask.html', {'form': form,
-                                            'user': request.user,
-                                            'session': request.session, })
+            return render(request, 'ask.html', {'form': form, })
+        # return render(request, 'ask.html', {'form': form,
+        #                                     'user': request.user,
+        #                                     'session': request.session, })
