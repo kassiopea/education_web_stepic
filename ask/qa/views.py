@@ -1,11 +1,10 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.http import Http404
-
-# Create your views here.
 from django.http import HttpResponse
-
+# Create your views here.
 from .models import Question, Answer
+from qa.forms import AskForm, AnswerForm
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
@@ -45,9 +44,37 @@ def guestionOwn(request, id):
     except Question.DoesNotExist:
         raise Http404
     answers = Answer.objects.filter(question__id=num)
-    # answers = question.answer_set.all()
+
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            form._user = request.user
+            _ = form.save()
+            url = question.get_url()
+            return HttpResponseRedirect(url)
+        else:
+            form = AnswerForm(initial={'question': question.id})
+
     return render(request, 'question.html',
                   {'question': question,
-                   'answers': answers,
+                   'form': form,
                    'user': request.user,
                    'session': request.session, })
+
+
+def ask(request):
+    if request.method == "POST":
+        form = AskForm(request.POST)
+
+        if form.is_valid():
+            form._user = request.user
+            post = form.save()
+            url = post.get_url()
+            return HttpResponseRedirect(url)
+
+        else:
+            form = AskForm()
+
+        return render(request, 'ask.html', {'form': form,
+                                        'user': request.user,
+                                        'session': request.session, })
