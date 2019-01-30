@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from django.http import Http404
+from django.http import HttpResponseRedirect, Http404
 from django.http import HttpResponse
 # Create your views here.
 from .models import Question, Answer
