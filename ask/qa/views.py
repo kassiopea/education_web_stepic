@@ -49,7 +49,7 @@ def guestionOwn(request, id):
         form = AnswerForm(request.POST)
         if form.is_valid():
             form._user = request.user
-            _ = form.save()
+            form = form.save()
             url = question.get_url()
             return HttpResponseRedirect(url)
         else:
@@ -57,7 +57,6 @@ def guestionOwn(request, id):
 
     return render(request, 'question.html',
                   {'question': question,
-                  'answers': answers,
                    'form': form,
                    'user': request.user,
                    'session': request.session, })
