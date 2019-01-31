@@ -71,6 +71,7 @@ def ask(request):
         form = AskForm(request.POST)
         if form.is_valid():
             question = form.save()
+            url = question.get_url()
             question.author = request.user
             question.save()
             return HttpResponseRedirect(url)
