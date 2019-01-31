@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.http import HttpResponse
 # Create your views here.
 from .models import Question, Answer
-from qa.forms import AskForm, AnswerForm, SingupForm, loginIN
+from qa.forms import AskForm, AnswerForm, SingupForm, LoginForm
 from django.contrib.auth import login, authenticate
 
 def test(request, *args, **kwargs):
