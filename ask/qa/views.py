@@ -87,8 +87,8 @@ def singup(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=raw_password)
+            password = form.raw_passeord
+            user = authenticate(username=username, password=password)
 
             if user is not None:
                 if user.is_active:

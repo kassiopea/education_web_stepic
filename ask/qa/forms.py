@@ -39,7 +39,7 @@ class AnswerForm(forms.Form):
 class SingupForm(forms.Form):
     username = forms.CharField(max_length=100, required=False)
     email = forms.EmailField(required=False)
-    password = forms.PasswordInput()
+    password = forms.CharField(widget=forms.PasswordInput, required=False)
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
