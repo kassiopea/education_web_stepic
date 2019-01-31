@@ -20,7 +20,7 @@ from qa.views import test, newQuestions, popular, guestionOwn, ask, signup, logi
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'', newQuestions, name='main'),
-    path(r'login/', loginIN, name='login'),
+    path(r'login/', loginIN, name='loginIN'),
     path(r'signup/', signup, name='signup'),
     path(r'question/<int:id>/', guestionOwn, name='question'),
     path(r'ask/', ask, name='ask'),

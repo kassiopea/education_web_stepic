@@ -114,8 +114,8 @@ def loginIN(request):
                     login(request, user)
 
             return HttpResponseRedirect('/')
-        else:
-            form = LoginForm()
-        return render(request, 'login.html', {'form': form,
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form,
                                               'user': request.user,
                                               'session': request.session, })
