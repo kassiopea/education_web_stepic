@@ -80,25 +80,25 @@ def ask(request):
                                         'user': request.user,
                                         'session': request.session, })
 
-def singup(request):
-    form = SingupForm(request.POST)
+def signup(request):
     if request.method == "POST":
-
+        form = SignupForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get['username']
+            user = form.save()
+            username = form.cleaned_data["username"]
             password = form.raw_passeord
             user = authenticate(username=username, password=password)
-
+            print(type(user))
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                return HttpResponseRedirect('/')
-        else:
-            form = SingupForm()
-        return render(request, 'signup.html', {'form': form,
-                                                   'user': request.user,
-                                                   'session': request.session, })
+            return HttpResponseRedirect('/')
+    else:
+        form = SignupForm()
+    return render(request, 'signup.html', {'form': form,
+                                           'user': request.user,
+                                           'session': request.session, })
+
 
 def loginIN(request):
 

@@ -36,7 +36,7 @@ class AnswerForm(forms.Form):
             answer.save()
             return answer
 
-class SingupForm(forms.Form):
+class SignupForm(forms.Form):
     username = forms.CharField(max_length=100, required=False)
     email = forms.EmailField(required=False)
     password = forms.CharField(widget=forms.PasswordInput, required=False)
@@ -51,7 +51,6 @@ class SingupForm(forms.Form):
         except User.DoesNotExist:
             pass
         return username
-
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -70,6 +69,7 @@ class SingupForm(forms.Form):
         user = User(**self.cleaned_data)
         user.save()
         return user
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100, required=False)
