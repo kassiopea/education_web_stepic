@@ -70,7 +70,7 @@ def ask(request):
     if request.method == "POST":
         form = AskForm(request.POST)
         if form.is_valid():
-            question = form.save(commit=False)
+            question = form.save()
             question.author = request.user
             question.save()
             return HttpResponseRedirect(url)
