@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.http import HttpResponse
 # Create your views here.
 from .models import Question, Answer
-from qa.forms import AskForm, AnswerForm, SingupForm, LoginForm
+from qa.forms import AskForm, AnswerForm, SingupForm, loginIN
 from django.contrib.auth import login, authenticate
 
 def test(request, *args, **kwargs):
@@ -81,6 +81,7 @@ def ask(request):
                                         'session': request.session, })
 
 def singup(request):
+
     if request.method == "POST":
         form = SingupForm(request.POST)
         if form.is_valid():
@@ -100,6 +101,7 @@ def singup(request):
                                                    'session': request.session, })
 
 def loginIN(request):
+
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
