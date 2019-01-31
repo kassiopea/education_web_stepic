@@ -93,7 +93,7 @@ def singup(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-            return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/')
         else:
             form = SingupForm()
             return render(request, 'signup.html', {'form': form,
