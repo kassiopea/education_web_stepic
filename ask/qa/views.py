@@ -4,7 +4,8 @@ from django.http import HttpResponseRedirect, Http404
 from django.http import HttpResponse
 # Create your views here.
 from .models import Question, Answer
-from qa.forms import AskForm, AnswerForm
+from qa.forms import AskForm, AnswerForm, SingupForm, LoginForm
+from django.contrib.auth import login, authenticate
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
@@ -45,7 +46,7 @@ def guestionOwn(request, id):
         raise Http404
 
     form = AnswerForm(request.POST)
-    
+
     if request.method == "POST":
 
         if form.is_valid():
@@ -53,13 +54,15 @@ def guestionOwn(request, id):
             url = question.get_url()
             return HttpResponseRedirect(url)
         else:
-            form = AnswerForm(initial={'question': num})
+            form = AnswerForm(initial={'question': question.id})
 
     answers = Answer.objects.filter(question__id=num)
     return render(request, 'question.html',
                   {'question': question,
                    'answers': answers,
                    'form': form,
+                   'user': request.user,
+                   'session': request.session,
                    })
 
 
@@ -72,7 +75,45 @@ def ask(request):
             return HttpResponseRedirect(url)
     else:
         form = AskForm()
-    return render(request, 'ask.html', {'form': form, })
-        # return render(request, 'ask.html', {'form': form,
-        #                                     'user': request.user,
-        #                                     'session': request.session, })
+    # return render(request, 'ask.html', {'form': form, })
+    return render(request, 'ask.html', {'form': form,
+                                        'user': request.user,
+                                        'session': request.session, })
+
+def singup(request):
+    if request.method == "POST":
+        form = SingupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=raw_password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+            return HttpResponseRedirect('/')
+        else:
+            form = SingupForm()
+            return render(request, 'signup.html', {'form': form,
+                                                   'user': request.user,
+                                                   'session': request.session, })
+
+def loginIN(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+
+            return HttpResponseRedirect('/')
+        else:
+            form = LoginForm()
+        return render(request, 'login.html', {'form': form,
+                                              'user': request.user,
+                                              'session': request.session, })
