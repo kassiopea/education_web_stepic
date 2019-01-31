@@ -81,9 +81,9 @@ def ask(request):
                                         'session': request.session, })
 
 def singup(request):
-
+    form = SingupForm(request.POST)
     if request.method == "POST":
-        form = SingupForm(request.POST)
+
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
