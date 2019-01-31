@@ -96,7 +96,7 @@ def singup(request):
                 return HttpResponseRedirect('/')
         else:
             form = SingupForm()
-        return render(request, 'signup.html', {'form': form,
+    return render(request, 'signup.html', {'form': form,
                                                    'user': request.user,
                                                    'session': request.session, })
 
