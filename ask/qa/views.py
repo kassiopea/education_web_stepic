@@ -86,7 +86,7 @@ def singup(request):
 
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
+            username = form.cleaned_data.get['username']
             password = form.raw_passeord
             user = authenticate(username=username, password=password)
 
@@ -96,7 +96,7 @@ def singup(request):
                 return HttpResponseRedirect('/')
         else:
             form = SingupForm()
-    return render(request, 'signup.html', {'form': form,
+        return render(request, 'signup.html', {'form': form,
                                                    'user': request.user,
                                                    'session': request.session, })
 
