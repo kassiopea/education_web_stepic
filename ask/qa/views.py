@@ -70,8 +70,9 @@ def ask(request):
     if request.method == "POST":
         form = AskForm(request.POST)
         if form.is_valid():
-            post = form.save()
-            url = post.get_url()
+            question = form.save(commit=False)
+            question.author = request.user
+            question.save()
             return HttpResponseRedirect(url)
     else:
         form = AskForm()
@@ -79,6 +80,7 @@ def ask(request):
     return render(request, 'ask.html', {'form': form,
                                         'user': request.user,
                                         'session': request.session, })
+
 
 def signup(request):
     if request.method == "POST":
