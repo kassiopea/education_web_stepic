@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="header">
+        <nav class="nav">
+          <ul class="nav-list">
+
+            <li class="nav-list_item"><a href="/login/">Регистрация</a></li>
+            <li class="nav-list_item"><a href="/signup/">Вход</a></li>
+            <li class="nav-list_item"><a href="/ask/">Задать вопрос</a></li>
+            <!-- <li class="nav-list_item"><a href="/new/">Новые вопросы</a></li> -->
+            <li class="nav-list_item"><a href="/popular/">Популярные вопросы</a></li>
+          </ul>
+
+          <ul class="nav-list nav-list__admin">
+            <li class="nav-list_item nav-list_item__admin"><a href="/admin/"></a></li>
+          </ul>
+        </nav>
+
+
+      </header>
+      <div class="content">
+        <h1>{% block titlesheet %}{% endblock %}</h1>
+        {% block content %}{% endblock %}
+        <div class="users_info">
+          <div>User: {{ user }}</div>
+          <div>Session: {{ session }}</div>
+        </div>
+      </div>
+      <footer class="footer">
+        {% block footer %}
+        <p>Учебный проект stepik web-технологии</p>
+        {% endblock %}
+      </footer>
+    </div>
+  </body>
+</html>

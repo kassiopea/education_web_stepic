@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+  {% block title %}{{ title }} questions{% endblock %}
+
+  {% block titlesheet %}{{ title }} вопросы{% endblock %}
+
+  {% block content %}
+    {% for question in questions %}
+        <p><a href="{{ question.get_url }}">{{ question }}, {{ question.author_id }}</a></p>
+    {% endfor %}
+{% endblock %}

@@ -30,7 +30,7 @@ def pagInt(request, questions, title):
 
 def newQuestions(request):
     questions = Question.objects.new()
-    return pagInt(request, questions, title='Latest')
+    return pagInt(request, questions, title='Новые')
 
 
 def popular(request):

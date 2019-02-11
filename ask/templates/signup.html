@@ -6,6 +6,9 @@
   </head>
   <body>
     <h1>Sign up</h1>
+    <div class="main_page">
+      <a href="/" class="main_page-link">Вернуться на главную</a>
+    </div>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

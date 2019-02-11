@@ -1,0 +1,84 @@
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.wrap {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+}
+
+.header {
+  height: 80px;
+  background-color: #f2f2f2;
+ }
+
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+}
+
+ .nav-list {
+   display: flex;
+   list-style: none;
+   height: 50px;
+   align-items: center;
+ }
+
+ .nav-list__admin {
+   margin-left: auto;
+ }
+ .nav-list_item {
+   margin-right: 10px;
+ }
+
+ .nav-list a {
+   text-decoration: none;
+   text-align: center;
+   color: #fff;
+   background-color: #bd005e;
+   border-radius: 5px;
+   padding: 10px;
+   transition: 0.6s;
+ }
+
+ .nav-list a:hover {
+   color: #bd005e;
+   background-color: #1f1f1f;
+ }
+
+ .nav-list_item__admin a {
+   display: block;
+   width: 30px;
+   height: 30px;
+   background-image: url(../img/admin-with-cogwheels.png);
+   background-repeat: no-repeat;
+   background-position: center;
+ }
+ .nav-list_item__admin a:hover {
+   background-color: #bababa;
+ }
+.content {
+  text-align: center;
+  /* background-color: tomato; */
+  display: flex;
+  flex-direction: column;
+}
+
+.users_info {
+  margin-top: auto;
+  padding-bottom: 10px;
+}
+
+.footer {
+  height: 100px;
+  text-align: center;
+  color: white;
+  background-color: #1f1f1f;
+}

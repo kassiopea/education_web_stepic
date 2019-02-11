@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from qa.views import test, newQuestions, popular, guestionOwn, ask, signup, loginIN
 
+
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'', newQuestions, name='main'),
@@ -26,5 +27,4 @@ urlpatterns = [
     path(r'ask/', ask, name='ask'),
     path(r'popular/', popular, name='popular'),
     path(r'new/', test, name='new'),
-    # path(r'?page=', newQuestions, name='new_questions'),
 ]
