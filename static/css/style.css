@@ -1,10 +1,14 @@
 html {
   height: 100%;
+  width: 100%;
 }
 body {
   height: 100%;
+  width: 100%;
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+  overflow-x:hidden;
 }
 
 .wrap {
@@ -38,7 +42,7 @@ body {
    margin-right: 10px;
  }
 
- .nav-list a {
+ .nav-list__link {
    text-decoration: none;
    text-align: center;
    color: #fff;
@@ -48,25 +52,25 @@ body {
    transition: 0.6s;
  }
 
- .nav-list a:hover {
+ .nav-list__link:hover {
    color: #bd005e;
    background-color: #1f1f1f;
  }
 
- .nav-list_item__admin a {
+ .nav-list__link-admin {
    display: block;
-   width: 30px;
-   height: 30px;
+   width: 32px;
+   height: 32px;
    background-image: url(../img/admin-with-cogwheels.png);
    background-repeat: no-repeat;
    background-position: center;
+   /* transition: 0.6s; */
  }
- .nav-list_item__admin a:hover {
+ .nav-list__link-admin:hover {
    background-color: #bababa;
  }
 .content {
   text-align: center;
-  /* background-color: tomato; */
   display: flex;
   flex-direction: column;
 }
@@ -81,4 +85,152 @@ body {
   text-align: center;
   color: white;
   background-color: #1f1f1f;
+}
+
+.main_page {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.main_page-link {
+  width: 32px;
+  height: 32px;
+  display: block;
+  text-decoration: none;
+  background-color: inherit;
+  padding: 4px;
+  border-radius: 5px;
+  transition: 0.6s;
+
+  background-image: url('../img/home_icon.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  text-indent: -10000px;
+}
+
+.main_page-link:hover {
+  background-color: #bababa;
+}
+
+.form-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    align-items: flex-end;
+    margin: 0 auto;
+}
+.form-list label {
+  margin: 0;
+  padding: 0;
+}
+.form-list input {
+  height: 25px;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.btn-submit {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: 5px;
+
+  background-color: #1f1f1f;
+  text-align: center;
+  color: white;
+  padding: 8px 24px;
+  transition: 0.6s;
+
+  margin-bottom: 20px;
+}
+
+.errorlist {
+  list-style: none;
+}
+
+.btn-submit:hover {
+  background-color: transparent;
+  color: black;
+  border: 1px solid #1f1f1f;
+}
+
+.login-form__ask .btn-submit {
+  margin-top: 20px;
+}
+
+.form-list__ask {
+  width: 400px;
+}
+.form-list__ask li {
+  display: flex;
+  align-self: start;
+}
+
+.form-list__ask input[type = text] {
+  width: 335px;
+}
+
+.form-list__ask label {
+  padding-right: 20px;
+}
+
+.question-text {
+  width: 600px;
+  margin: 0 auto;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.author {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.form-list__answer {
+  width: 590px;
+  margin-bottom: 20px;
+}
+.form-list__answer li {
+  display: flex;
+  flex-direction: column;
+  align-self: normal;
+}
+
+.form-list__answer label {
+  text-align: left;
+}
+
+.answers_on_question-wrap {
+  width: 600px;
+  padding: 10px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.answers_on_question {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 10px;
+}
+
+.answers_on_question li {
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.answer_author {
+  font-weight: bold;
+}
+
+.answer_body {
+  margin-top: 10px;
+}
+.list_questions_wrap {
+  width: 360px;
+  margin: 0 auto;
+  text-align: left;
 }
