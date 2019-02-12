@@ -3,7 +3,7 @@
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{{ title }}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
   </head>
@@ -12,24 +12,31 @@
       <header class="header">
         <nav class="nav">
           <ul class="nav-list">
+            <!-- username -->
+            <li class="nav-list_item"><a  class="nav-list__link" href="/signup/">Регистрация</a></li>
+            {% if user.username == "" %}
+              <li class="nav-list_item"><a class="nav-list__link" href="/login/">Войти</a></li>
+            {% else %}
+              <li class="nav-list_item"><a class="nav-list__link" href="/logout/">Выйти из "{{ user.username }}"</a></li>
 
-            <li class="nav-list_item"><a href="/login/">Регистрация</a></li>
-            <li class="nav-list_item"><a href="/signup/">Вход</a></li>
-            <li class="nav-list_item"><a href="/ask/">Задать вопрос</a></li>
+            {% endif %}
+            <li class="nav-list_item"><a  class="nav-list__link" href="/ask/">Задать вопрос</a></li>
             <!-- <li class="nav-list_item"><a href="/new/">Новые вопросы</a></li> -->
-            <li class="nav-list_item"><a href="/popular/">Популярные вопросы</a></li>
+            <li class="nav-list_item"><a  class="nav-list__link" href="/popular/">Популярные вопросы</a></li>
+            <li class="main_page">{% block link_home %}{% endblock %}</li>
           </ul>
 
           <ul class="nav-list nav-list__admin">
-            <li class="nav-list_item nav-list_item__admin"><a href="/admin/"></a></li>
+            <li class="nav-list_item nav-list_item__admin"><a class="nav-list__link nav-list__link-admin" href="/admin/"></a></li>
           </ul>
         </nav>
 
 
       </header>
       <div class="content">
-        <h1>{% block titlesheet %}{% endblock %}</h1>
-        {% block content %}{% endblock %}
+        <h1>{{ title }}</h1>
+        {% block content %}
+        {% endblock %}
         <div class="users_info">
           <div>User: {{ user }}</div>
           <div>Session: {{ session }}</div>

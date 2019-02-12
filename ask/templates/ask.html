@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Ask a new question!</title>
-</head>
-<body>
-    <form method="post" action="/ask/">
-        <fieldset>
-          {% csrf_token %}
-          {{ form.as_p }}
-        </fieldset>
-        <button type="submit">Сохранить</button>
-    </form>
 
-    <div>User: {{ user }}</div>
-    <div>Session: {{ session }}</div>
-</body>
-</html>
+{% extends "base.html" %}
+  {{ title }}
+  {% block link_home %}
+    <a href="/" class="main_page-link">Вернуться на главную</a>
+  {% endblock %}
+  {{ title }}
+  {% block content %}
+    <form method="post" action="/ask/" class="login-form login-form__ask">
+
+          {% csrf_token %}
+          <ul class="form-list form-list__ask">
+            {{ form.as_ul }}
+          </ul>
+        <button type="submit" class="btn-submit">сохранить</button>
+    </form>
+  {% endblock %}

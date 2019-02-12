@@ -21,6 +21,7 @@ class AnswerForm(forms.Form):
     question = forms.IntegerField(widget=forms.HiddenInput)
 
     def clean_question(self):
+        print(self)
         question_id = self.cleaned_data['question']
         try:
             question = Question.objects.get(id=question_id)
@@ -44,7 +45,7 @@ class SignupForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if not username:
-            raise forms.ValidationError('Не задано имя пользователя')
+            raise forms.ValidationError('Введите имя')
         try:
             User.objects.get(username=username)
             raise forms.ValidationError('Такой пользователь уже существует')
@@ -55,7 +56,7 @@ class SignupForm(forms.Form):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if not email:
-            raise forms.ValidationError('Не указан адрес электронной почты')
+            raise forms.ValidationError('Не указан email')
         return email
 
     def clean_password(self):
@@ -78,13 +79,13 @@ class LoginForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if not username:
-            raise forms.ValidationError('Не задано имя пользователя')
+            raise forms.ValidationError('Введите имя')
         return username
 
     def clean_password(self):
         password = self.cleaned_data.get('password')
         if not password:
-            raise forms.ValidationError('Не указан пароль')
+            raise forms.ValidationError('введите пароль')
         return password
 
     def clean(self):
@@ -93,6 +94,6 @@ class LoginForm(forms.Form):
         try:
             user = User.objects.get(username=username)
         except User.DoesNotExist:
-            raise forms.ValidationError('Неверное имя пользователя или пароль1')
+            raise forms.ValidationError('Неверное имя или пароль1')
         if not user.check_password(password):
-            raise forms.ValidationError('Неверное имя пользователя или пароль2')
+            raise forms.ValidationError('Неверное имя или пароль2')

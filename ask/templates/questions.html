@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 
-  {% block title %}{{ title }} questions{% endblock %}
-
-  {% block titlesheet %}{{ title }} вопросы{% endblock %}
+  {{ title }}
+  {% block link_home %}
+    <a href="/" class="main_page-link">Вернуться на главную</a>
+  {% endblock %}
+  {{ title }}
 
   {% block content %}
+  <div class="list_questions_wrap">
     {% for question in questions %}
-        <p><a href="{{ question.get_url }}">{{ question }}, {{ question.author_id }}</a></p>
+
+        <p><a href="{{ question.get_url }}">Название: {{ question }}, автор: {{ question.author }}</a></p>
     {% endfor %}
-{% endblock %}
+  </div>
+        {# <p><a href="{{ question.get_url }}">{{ question }}, {{ question.author_id }}</a></p> #}
+
+  {% endblock %}

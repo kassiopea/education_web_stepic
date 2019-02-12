@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect, Http404
 from django.http import HttpResponse
+from django.contrib.auth import logout
+
 # Create your views here.
 from .models import Question, Answer
 from qa.forms import AskForm, AnswerForm, SignupForm, LoginForm
@@ -30,41 +32,37 @@ def pagInt(request, questions, title):
 
 def newQuestions(request):
     questions = Question.objects.new()
-    return pagInt(request, questions, title='Новые')
+    return pagInt(request, questions, title='Новые вопросы')
 
 
 def popular(request):
     questions = Question.objects.popular()
-    return pagInt(request, questions, title='Popular')
+    return pagInt(request, questions, title='Популярные вопросы')
 
 def guestionOwn(request, id):
     num = int(id)
     try:
-        question = Question.objects.filter(id=num)
-
+        question = Question.objects.get(id=num)
     except Question.DoesNotExist:
         raise Http404
 
-    form = AnswerForm(request.POST)
-
     if request.method == "POST":
-
+        form = AnswerForm(request.POST)
         if form.is_valid():
             _ = form.save()
             url = question.get_url()
             return HttpResponseRedirect(url)
-        else:
-            form = AnswerForm(initial={'question': question.id})
+    else:
+        form = AnswerForm(initial={'question': num})
+    # answers = Answer.objects.filter(question__id=num)
 
-    answers = Answer.objects.filter(question__id=num)
     return render(request, 'question.html',
                   {'question': question,
-                   'answers': answers,
+                   'title': question.title,
                    'form': form,
                    'user': request.user,
                    'session': request.session,
                    })
-
 
 def ask(request):
     if request.method == "POST":
@@ -72,13 +70,17 @@ def ask(request):
         if form.is_valid():
             question = form.save()
             url = question.get_url()
-            question.author = request.user
+            if request.user.username != "":
+                question.author = request.user
             question.save()
             return HttpResponseRedirect(url)
+
+
     else:
         form = AskForm()
     # return render(request, 'ask.html', {'form': form, })
     return render(request, 'ask.html', {'form': form,
+                                        'title': 'Задать вопрос',
                                         'user': request.user,
                                         'session': request.session, })
 
@@ -91,7 +93,6 @@ def signup(request):
             username = form.cleaned_data["username"]
             password = form.raw_passeord
             user = authenticate(username=username, password=password)
-            print(type(user))
             if user is not None:
                 if user.is_active:
                     login(request, user)
@@ -99,6 +100,7 @@ def signup(request):
     else:
         form = SignupForm()
     return render(request, 'signup.html', {'form': form,
+                                           'title': 'Регистрация',
                                            'user': request.user,
                                            'session': request.session, })
 
@@ -120,5 +122,11 @@ def loginIN(request):
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form,
-                                              'user': request.user,
-                                              'session': request.session, })
+                                          'title': 'Вход в личный кабинет',
+                                          'user': request.user,
+                                          'session': request.session, })
+
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect('/')
